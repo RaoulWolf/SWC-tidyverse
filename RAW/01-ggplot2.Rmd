@@ -320,7 +320,7 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, colour = cont
 ```
 
 
-## **Challenge 6.** {.tabset .tabset-fade .tabset-pills}
+## **JUST DEMONSTRATE THIS!!! Challenge 6.** {.tabset .tabset-fade .tabset-pills}
 
 ### Assignment
 > 
@@ -399,22 +399,18 @@ The graph produced in the previous section looks quite good, but it requires a r
 library(gganimate)
 
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, color = continent)) + 
-  geom_point() +
-  geom_text(mapping = aes(x = 40, y = 30, label=as.character(floor(year))), size = 16, color="grey") +
+  geom_point(alpha = 0.7) +
+  #geom_text(mapping = aes(x = 40, y = 30, label=as.character(floor(year))), size = 16, color="grey") +
   scale_x_log10() +
-  labs(title = "Life Expectancy vs GDP per capita over time",
-       subtitle = "In the past 50 years, life expectancy has improved in most countries of the world",
+  facet_wrap(~ continent) +
+  labs(title = "Year: {frame_time}",
        caption = "Source: Gapminder foundation, https://www.gapminder.org/data/",
        x = "GDP per capita, USD",
        y = "Life expectancy, years",
        color = "Continent",
        size = "Population") +
-  theme_bw() +
-  # here comes a gganimate function
-  transition_time(year)+
-  ease_aes('linear')
-
-
+  transition_time(year) +
+  ease_aes("linear")
 ```
 
 ## Wrap-up
